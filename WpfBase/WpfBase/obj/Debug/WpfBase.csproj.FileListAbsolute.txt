@@ -12,3 +12,4 @@ C:\Users\Meisei　Nakamura\Documents\WpfBase\WpfBase\WpfBase\bin\Debug\WpfBase.d
 C:\Users\Meisei　Nakamura\Documents\WpfBase\WpfBase\WpfBase\bin\Debug\WpfBase.pdb
 C:\Users\Meisei　Nakamura\Documents\WpfBase\WpfBase\WpfBase\obj\Debug\WpfBase.dll
 C:\Users\Meisei　Nakamura\Documents\WpfBase\WpfBase\WpfBase\obj\Debug\WpfBase.pdb
+C:\Users\Meisei　Nakamura\Documents\WpfBase\WpfBase\WpfBase\obj\Debug\WpfBase.csprojResolveAssemblyReference.cache
