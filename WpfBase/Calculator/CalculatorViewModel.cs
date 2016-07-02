@@ -79,7 +79,7 @@ namespace Calculator
                 });
             }
         }
-        public ICommand Enter
+        public ICommand EnterCommand
         {
             get
             {

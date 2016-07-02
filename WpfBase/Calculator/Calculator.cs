@@ -1,76 +1,95 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator
 {
-    class Calculator : ICalculator
+    public class Calculator
     {
+        private string _number1;
+        private string _number2;
+        private string _answer;
+        private int i;
+
         public string Number
         {
             get
             {
-
-                switch (_i)
+                switch (i)
                 {
                     case 1:
-                        return _number1.ToString();
+                        return _number1;
                     case 2:
-                        return _number2.ToString();
+                        return _number2;
                     case 3:
-                        return answer.ToString();
+                        return _answer;
                     default:
-                        return "";
+                        return "0";
                 }
-
             }
         }
 
-        public string Operator
+        public string Operator { get; private set; }
+
+
+        public Calculator()
         {
-            get; private set;
+            Initialize();
+        }
+
+        public void AddNumber(int number)
+        {
+            if (i == 1 || i == 3)
+            {
+                if (string.IsNullOrEmpty(Operator))
+                {
+                    i = 1;
+                    if (_number1 == "0")
+                    {
+                        _number1 = number.ToString();
+                    }
+                    else
+                    {
+                        _number1 += number.ToString();
+                    }
+                }
+                else
+                {
+                    i = 2;
+                }
+            }
+            if (i == 2)
+            {
+                if (_number2 == "0")
+                {
+                    _number2 = number.ToString();
+                }
+                else
+                {
+                    _number2 += number.ToString();
+                }
+            }
         }
 
         public void Add()
         {
-            if (_i == 2)
-            {
-                Enter();
-                _number2 = 0;
-                _number1 = (int)answer;
-            }
-            _i = 2;
+            SuccessionOperate();
             Operator = "+";
         }
 
-        public void AddNumber(int num)
+        public void Substract()
         {
-            switch (_i)
-            {
-                case 1:
-                    _number1 = int.Parse(_number1.ToString() + num.ToString());
-                    break;
-                case 2:
-                    _number2 = int.Parse(_number2.ToString() + num.ToString());
-                    break;
-            }
+            SuccessionOperate();
+            Operator = "-";
         }
-        private int _number1;
-        private int _number2;
-        private int _i = 1;
-        private double answer;
+
+        public void Multiple()
+        {
+            SuccessionOperate();
+            Operator = "*";
+        }
 
         public void Divide()
         {
-            if (_i == 2)
-            {
-                Enter();
-                _number2 = 0;
-                _number1 = (int)answer;
-            }
-            _i = 2;
+            SuccessionOperate();
             Operator = "/";
         }
 
@@ -79,45 +98,43 @@ namespace Calculator
             switch (Operator)
             {
                 case "+":
-                    answer = _number1 + _number2;
-                    break;
-                case "/":
-                    answer = (double)_number1 / _number2;
+                    _answer = (double.Parse(_number1) + double.Parse(_number2)).ToString();
                     break;
                 case "-":
-                    answer = _number1 - _number2;
+                    _answer = (double.Parse(_number1) - double.Parse(_number2)).ToString();
                     break;
                 case "*":
-                    answer = _number1 * _number2;
+                    _answer = (double.Parse(_number1) * double.Parse(_number2)).ToString();
                     break;
-                
+                case "/":
+                    _answer = (double.Parse(_number1) / double.Parse(_number2)).ToString();
+                    break;
+                default:
+                    Initialize();
+                    return;
             }
-
-            _i = 3;
+            _number1 = "0";
+            _number2 = "0";
+            Operator = "";
+            i = 3;
         }
-
-        public void Multiple()
+        private void Initialize()
         {
-            if (_i == 2)
-            {
-                Enter();
-                _number2 = 0;
-                _number1 = (int)answer;
-            }
-            _i = 2;
-            Operator = "*";
+            _number1 = "0";
+            _number2 = "0";
+            _answer = "0";
+            i = 1;
         }
-
-        public void Substract()
+        private void SuccessionOperate()
         {
-            if (_i == 2)
+            if (i == 2 || i == 3)
             {
-                Enter();
-                _number2 = 0;
-                _number1 = (int)answer;
+                if (i == 2)
+                {
+                    Enter();
+                }
+                _number1 = _answer;
             }
-            _i = 2;
-            Operator = "-";
         }
     }
 }
